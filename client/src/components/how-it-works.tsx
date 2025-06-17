@@ -3,8 +3,10 @@ import { ArrowRight } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function HowItWorks() {
+  const [, setLocation] = useLocation();
+
   const handleGetStarted = () => {
-    console.log('Get Started Now clicked - implement signup/onboarding flow');
+    setLocation('/onboarding');
   };
 
   const steps = [

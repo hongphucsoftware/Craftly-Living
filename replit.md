@@ -95,7 +95,8 @@ Craftly Living is a full-stack web application that connects homeowners with tru
 
 ```
 Changelog:
-- June 17, 2025. Initial setup
+- June 17, 2025. Initial setup with landing page components
+- June 17, 2025. Added multi-step homeowner onboarding form with renovation project data collection
 ```
 
 ## User Preferences

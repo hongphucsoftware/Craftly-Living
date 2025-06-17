@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useLocation } from "wouter";
 
 export default function CTASection() {
+  const [, setLocation] = useLocation();
+
   const handleGetMatched = () => {
-    console.log('Get Matched Now clicked - implement signup/onboarding flow');
+    setLocation('/onboarding');
   };
 
   const handleScheduleConsultation = () => {
