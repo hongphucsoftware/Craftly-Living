@@ -128,28 +128,22 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <RadioGroup
-                          value={field.value}
-                          onValueChange={field.onChange}
-                          className="grid grid-cols-2 gap-4"
-                        >
+                        <div className="grid grid-cols-2 gap-4">
                           {renovationTypes.map((type) => (
-                            <div key={type.value}>
-                              <RadioGroupItem
-                                value={type.value}
-                                id={type.value}
-                                className="peer sr-only"
-                              />
-                              <label
-                                htmlFor={type.value}
-                                className="flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-red-400 peer-checked:craftly-coral peer-checked:text-white transition-all"
-                              >
-                                <type.icon className="w-8 h-8 mb-2" />
-                                <span className="font-medium">{type.label}</span>
-                              </label>
+                            <div
+                              key={type.value}
+                              onClick={() => field.onChange(type.value)}
+                              className={`flex flex-col items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                                field.value === type.value
+                                  ? "border-red-400 craftly-coral text-white"
+                                  : "bg-white border-gray-200 hover:bg-gray-50"
+                              }`}
+                            >
+                              <type.icon className="w-8 h-8 mb-2" />
+                              <span className="font-medium">{type.label}</span>
                             </div>
                           ))}
-                        </RadioGroup>
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -198,33 +192,27 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <RadioGroup
-                          value={`${field.value}-${form.watch("budgetMax")}`}
-                          onValueChange={(value) => {
-                            const range = budgetRanges.find(r => r.value === value);
-                            if (range) {
-                              form.setValue("budgetMin", range.min);
-                              form.setValue("budgetMax", range.max);
-                            }
-                          }}
-                          className="space-y-3"
-                        >
-                          {budgetRanges.map((range) => (
-                            <div key={range.value}>
-                              <RadioGroupItem
-                                value={range.value}
-                                id={range.value}
-                                className="peer sr-only"
-                              />
-                              <label
-                                htmlFor={range.value}
-                                className="flex items-center p-4 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-red-400 peer-checked:bg-red-50 transition-all"
+                        <div className="space-y-3">
+                          {budgetRanges.map((range) => {
+                            const isSelected = field.value === range.min && form.watch("budgetMax") === range.max;
+                            return (
+                              <div
+                                key={range.value}
+                                onClick={() => {
+                                  form.setValue("budgetMin", range.min);
+                                  form.setValue("budgetMax", range.max);
+                                }}
+                                className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                                  isSelected
+                                    ? "border-red-400 bg-red-50"
+                                    : "bg-white border-gray-200 hover:bg-gray-50"
+                                }`}
                               >
                                 <span className="text-lg font-medium">{range.label}</span>
-                              </label>
-                            </div>
-                          ))}
-                        </RadioGroup>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -246,28 +234,22 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <RadioGroup
-                          value={field.value}
-                          onValueChange={field.onChange}
-                          className="space-y-3"
-                        >
+                        <div className="space-y-3">
                           {styles.map((style) => (
-                            <div key={style.value}>
-                              <RadioGroupItem
-                                value={style.value}
-                                id={style.value}
-                                className="peer sr-only"
-                              />
-                              <label
-                                htmlFor={style.value}
-                                className="flex flex-col p-4 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-red-400 peer-checked:bg-red-50 transition-all"
-                              >
-                                <span className="font-medium text-lg">{style.label}</span>
-                                <span className="text-gray-500 text-sm mt-1">{style.description}</span>
-                              </label>
+                            <div
+                              key={style.value}
+                              onClick={() => field.onChange(style.value)}
+                              className={`flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                                field.value === style.value
+                                  ? "border-red-400 bg-red-50"
+                                  : "bg-white border-gray-200 hover:bg-gray-50"
+                              }`}
+                            >
+                              <span className="font-medium text-lg">{style.label}</span>
+                              <span className="text-gray-500 text-sm mt-1">{style.description}</span>
                             </div>
                           ))}
-                        </RadioGroup>
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -291,28 +273,22 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
                     <FormItem>
                       <FormLabel>Timeline</FormLabel>
                       <FormControl>
-                        <RadioGroup
-                          value={field.value}
-                          onValueChange={field.onChange}
-                          className="space-y-3"
-                        >
+                        <div className="space-y-3">
                           {timelines.map((timeline) => (
-                            <div key={timeline.value}>
-                              <RadioGroupItem
-                                value={timeline.value}
-                                id={timeline.value}
-                                className="peer sr-only"
-                              />
-                              <label
-                                htmlFor={timeline.value}
-                                className="flex flex-col p-3 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-red-400 peer-checked:bg-red-50 transition-all"
-                              >
-                                <span className="font-medium">{timeline.label}</span>
-                                <span className="text-gray-500 text-sm">{timeline.description}</span>
-                              </label>
+                            <div
+                              key={timeline.value}
+                              onClick={() => field.onChange(timeline.value)}
+                              className={`flex flex-col p-3 border-2 rounded-lg cursor-pointer transition-all ${
+                                field.value === timeline.value
+                                  ? "border-red-400 bg-red-50"
+                                  : "bg-white border-gray-200 hover:bg-gray-50"
+                              }`}
+                            >
+                              <span className="font-medium">{timeline.label}</span>
+                              <span className="text-gray-500 text-sm">{timeline.description}</span>
                             </div>
                           ))}
-                        </RadioGroup>
+                        </div>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
