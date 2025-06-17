@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function HeroSection() {
+  const [, setLocation] = useLocation();
+
   const handleGetMatched = () => {
-    console.log('Get Matched Today clicked - implement signup/onboarding flow');
+    setLocation('/onboarding');
   };
 
   const handleLearnMore = () => {

@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import OnboardingForm from "@/components/onboarding-form";
+import OnboardingForm from "../components/onboarding-form";
 import type { InsertRenovationProject } from "@shared/schema";
 
 export default function Onboarding() {
@@ -12,12 +12,18 @@ export default function Onboarding() {
 
   const createProjectMutation = useMutation({
     mutationFn: async (projectData: InsertRenovationProject) => {
-      return apiRequest("/api/renovation-projects", {
+      return await fetch("/api/renovation-projects", {
         method: "POST",
         body: JSON.stringify(projectData),
         headers: {
           "Content-Type": "application/json",
         },
+      }).then(async (res) => {
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || "Failed to create project");
+        }
+        return res.json();
       });
     },
     onSuccess: () => {

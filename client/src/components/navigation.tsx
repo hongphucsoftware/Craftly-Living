@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -14,8 +16,7 @@ export default function Navigation() {
   };
 
   const handleGetMatched = () => {
-    // TODO: Implement get matched flow
-    console.log('Get Matched clicked - implement signup/onboarding flow');
+    setLocation('/onboarding');
   };
 
   return (

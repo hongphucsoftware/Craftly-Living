@@ -330,6 +330,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
                           placeholder="Tell us more about your vision, specific requirements, or any other details..."
                           className="min-h-[100px]"
                           {...field}
+                          value={field.value || ""}
                         />
                       </FormControl>
                       <FormMessage />
