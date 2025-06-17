@@ -32,14 +32,14 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
                 onClick={handleGetMatched}
-                className="craftly-coral text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-500 transform hover:scale-105 transition-all duration-200 shadow-lg"
+                className="bg-red-500 text-white px-12 py-6 rounded-full text-2xl font-semibold hover:bg-red-600 transform hover:scale-105 transition-all duration-200 shadow-lg"
               >
                 Get Matched Today
               </Button>
               <Button 
                 variant="outline"
                 onClick={handleLearnMore}
-                className="border-2 border-red-400 craftly-coral-text px-8 py-4 rounded-full text-lg font-semibold hover:craftly-coral hover:text-white transition-all duration-200"
+                className="border-2 border-red-400 text-red-500 px-12 py-6 rounded-full text-2xl font-semibold hover:bg-red-500 hover:text-white transition-all duration-200"
               >
                 Learn More
               </Button>
@@ -65,17 +65,6 @@ export default function HeroSection() {
               alt="Modern kitchen renovation showcasing sleek white cabinets and marble countertops" 
               className="rounded-2xl shadow-2xl w-full h-auto"
             />
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 craftly-teal rounded-full flex items-center justify-center">
-                  <CheckCircle className="text-white text-lg" />
-                </div>
-                <div>
-                  <div className="font-semibold craftly-navy-text">Perfect Match!</div>
-                  <div className="text-sm text-gray-500">3 contractors available</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

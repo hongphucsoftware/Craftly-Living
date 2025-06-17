@@ -5,6 +5,7 @@ import FeaturedProjects from "@/components/featured-projects";
 import Testimonials from "@/components/testimonials";
 import TrustBadges from "@/components/trust-badges";
 import CTASection from "@/components/cta-section";
+import FAQSection from "@/components/faq-section";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Testimonials />
       <TrustBadges />
       <CTASection />
+      <FAQSection />
       <Footer />
     </div>
   );

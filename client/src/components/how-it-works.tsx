@@ -30,8 +30,8 @@ export default function HowItWorks() {
       number: 3,
       title: "Start Renovating",
       description: "Compare quotes, review portfolios, and choose your perfect match. Then watch your dream space come to life!",
-      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=250",
-      alt: "Beautiful finished renovation showing modern living room transformation",
+      image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400&q=80&h=250",
+      alt: "Beautiful finished bedroom renovation showing modern bedroom transformation",
       bgColor: "bg-green-500"
     }
   ];
@@ -51,18 +51,20 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <div key={step.number} className="relative text-center group">
               <div className="craftly-gray rounded-2xl p-8 hover:shadow-lg transition-all duration-300 transform group-hover:-translate-y-1">
-                <div className={`w-16 h-16 ${step.bgColor} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">{step.number}</span>
                 </div>
                 <h3 className="text-2xl font-semibold craftly-navy-text mb-4">{step.title}</h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   {step.description}
                 </p>
-                <img 
-                  src={step.image}
-                  alt={step.alt}
-                  className="rounded-xl w-full h-48 object-cover"
-                />
+                <div className="relative">
+                  <img 
+                    src={step.image}
+                    alt={step.alt}
+                    className="rounded-xl w-full h-48 object-cover"
+                  />
+                </div>
               </div>
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
@@ -71,15 +73,6 @@ export default function HowItWorks() {
               )}
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button 
-            onClick={handleGetStarted}
-            className="craftly-coral text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-500 transform hover:scale-105 transition-all duration-200 shadow-lg"
-          >
-            Get Started Now
-          </Button>
         </div>
       </div>
     </section>

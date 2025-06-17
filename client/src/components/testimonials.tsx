@@ -4,7 +4,7 @@ export default function Testimonials() {
   const testimonials = [
     {
       name: "Sarah Johnson",
-      location: "San Francisco, CA",
+      location: "Sydney, NSW",
       initials: "SJ",
       rating: 5,
       comment: "Craftly Living made our kitchen renovation stress-free. They matched us with an amazing contractor who understood exactly what we wanted. The whole process was seamless!",
@@ -12,7 +12,7 @@ export default function Testimonials() {
     },
     {
       name: "Mike Chen",
-      location: "Austin, TX",
+      location: "Parramatta, NSW",
       initials: "MC",
       rating: 5,
       comment: "We were matched with three excellent contractors for our bathroom remodel. The quality of work exceeded our expectations, and the project finished on time and budget.",
@@ -20,7 +20,7 @@ export default function Testimonials() {
     },
     {
       name: "Emily Davis",
-      location: "Denver, CO",
+      location: "Bondi Beach, NSW",
       initials: "ED",
       rating: 5,
       comment: "The matching process was incredibly thorough. We felt confident in our choice and our contractor delivered exactly what we envisioned for our living room renovation.",
@@ -53,7 +53,7 @@ export default function Testimonials() {
                 "{testimonial.comment}"
               </p>
               <div className="flex items-center justify-center">
-                <div className={`w-12 h-12 ${testimonial.bgColor} rounded-full flex items-center justify-center mr-4`}>
+                <div className={`w-12 h-12 ${testimonial.name === "Mike Chen" || testimonial.name === "Sarah Johnson" ? 'bg-green-500' : testimonial.bgColor} rounded-full flex items-center justify-center mr-4`}>
                   <span className="text-white font-semibold">{testimonial.initials}</span>
                 </div>
                 <div className="text-left">
