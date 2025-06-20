@@ -14,10 +14,17 @@ import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer } from "
 import { insertRenovationProjectSchema } from "@/shared/schema";
 import type { InsertRenovationProject } from "@/shared/schema";
 
-// Form validation schema
-const formSchema = insertRenovationProjectSchema.extend({
-  budgetMin: z.string().min(1, "Budget minimum is required"),
-  budgetMax: z.string().min(1, "Budget maximum is required"),
+// Simplified form validation schema
+const formSchema = z.object({
+  renovationType: z.string().min(1, "Please select a renovation type"),
+  postcode: z.string().min(1, "Please enter your postcode"),
+  budgetMin: z.string().optional(),
+  budgetMax: z.string().optional(),
+  style: z.string().min(1, "Please select a style"),
+  timeline: z.string().min(1, "Please select a timeline"),
+  urgency: z.string().optional(),
+  additionalNotes: z.string().optional(),
+  userId: z.number().nullable().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -78,8 +85,31 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
     },
   });
 
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
+  const nextStep = async () => {
+    // Validate current step before proceeding
+    let fieldsToValidate: (keyof FormData)[] = [];
+    
+    switch (currentStep) {
+      case 1:
+        fieldsToValidate = ['renovationType'];
+        break;
+      case 2:
+        fieldsToValidate = ['postcode'];
+        break;
+      case 3:
+        fieldsToValidate = ['budgetMin', 'budgetMax'];
+        break;
+      case 4:
+        fieldsToValidate = ['style'];
+        break;
+      case 5:
+        fieldsToValidate = ['timeline'];
+        break;
+    }
+    
+    const isValid = await form.trigger(fieldsToValidate);
+    
+    if (isValid && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
