@@ -100,7 +100,10 @@ Changelog:
 - June 17, 2025. Added multi-step homeowner onboarding form with renovation project data collection
 - June 20, 2025. Migrated from in-memory storage to PostgreSQL database integration
 - June 20, 2025. Implemented DatabaseStorage class with Drizzle ORM and Neon serverless connection
-- June 20, 2025. Connected to Supabase PostgreSQL database with proper schema setup
+- June 20, 2025. Fixed database connection issues and TypeScript path resolution
+- June 20, 2025. Resolved budget field mapping between frontend form and backend API
+- June 20, 2025. Fixed foreign key constraints for user-less project submissions
+- June 20, 2025. Connected to new PostgreSQL database with full functionality
 ```
 
 ## User Preferences
