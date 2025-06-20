@@ -21,15 +21,15 @@ const formRenovationProjectSchema = z.object({
 // Helper function to parse budget range strings
 const parseBudgetRange = (budgetString: string) => {
   switch (budgetString) {
-    case "Under £10,000":
-      return { min: "0", max: "10000" };
-    case "£10,000 - £25,000":
-      return { min: "10000", max: "25000" };
-    case "£25,000 - £50,000":
-      return { min: "25000", max: "50000" };
-    case "£50,000 - £100,000":
-      return { min: "50000", max: "100000" };
-    case "Over £100,000":
+    case "Under $15,000":
+      return { min: "0", max: "15000" };
+    case "$15,000 - $35,000":
+      return { min: "15000", max: "35000" };
+    case "$35,000 - $65,000":
+      return { min: "35000", max: "65000" };
+    case "$65,000 - $100,000":
+      return { min: "65000", max: "100000" };
+    case "Over $100,000":
       return { min: "100000", max: "999999" };
     default:
       return { min: "0", max: "0" };

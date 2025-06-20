@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import { useLocation } from "wouter";
+import LocationSearch from "./location-search";
 
 export default function HeroSection() {
   const [, setLocation] = useLocation();
@@ -26,9 +27,22 @@ export default function HeroSection() {
               <span className="craftly-coral-text">Matched to You.</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Connect with trusted contractors and designers who understand your vision. 
-              From kitchen remodels to full home makeovers, we match you with the perfect team.
+              Connect with trusted contractors across North Sydney, Northern Beaches, and Eastern Suburbs. 
+              From kitchen remodels to full home makeovers, we match you with the perfect local team.
             </p>
+            
+            {/* Location Search */}
+            <div className="mb-8">
+              <LocationSearch 
+                onSearch={(location) => {
+                  // Store location in localStorage and redirect to onboarding
+                  localStorage.setItem('selectedLocation', location);
+                  setLocation('/onboarding');
+                }}
+                defaultLocation="North Sydney, NSW"
+              />
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button 
                 onClick={handleGetMatched}

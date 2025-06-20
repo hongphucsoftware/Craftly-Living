@@ -7,72 +7,114 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star, MapPin, Clock, Phone, Mail, CheckCircle } from "lucide-react";
 
-// Sample contractor data that would typically come from an API
+// Sample contractor data focused on North Sydney and surrounding areas
 const sampleContractors = [
   {
     id: 1,
-    name: "Elite Kitchen Renovations",
+    name: "North Shore Renovations",
     rating: 4.9,
     reviewCount: 127,
     specialties: ["Kitchen", "Modern"],
-    location: "Central London",
+    location: "North Sydney, NSW",
     experience: "15+ years",
-    priceRange: "£25,000 - £50,000",
-    phone: "+44 20 7123 4567",
-    email: "info@elitekitchens.co.uk",
-    image: "/api/placeholder/150/150",
-    description: "Award-winning kitchen specialists with expertise in modern and contemporary designs. We've completed over 500 kitchen renovations across London.",
+    priceRange: "$35,000 - $65,000",
+    phone: "+61 2 9234 5678",
+    email: "info@northshorerevos.com.au",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    description: "Award-winning kitchen specialists with expertise in modern and contemporary designs. We've completed over 500 kitchen renovations across North Sydney and surrounding areas.",
     completedProjects: 487,
     responseTime: "Within 2 hours",
     verified: true,
     portfolio: [
-      "Modern kitchen with island",
+      "Modern kitchen with harbour views",
       "Contemporary open-plan design",
-      "Luxury kitchen renovation"
+      "Luxury kitchen renovation in Mosman"
+    ],
+    portfolioImages: [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1556909502-34060a1dc2ac?w=400&h=300&fit=crop"
     ]
   },
   {
     id: 2,
-    name: "London Home Transformers",
+    name: "Northern Beaches Builders",
     rating: 4.8,
     reviewCount: 89,
     specialties: ["Kitchen", "Bathroom", "Contemporary"],
-    location: "West London",
+    location: "Manly, Northern Beaches",
     experience: "12+ years",
-    priceRange: "£20,000 - £45,000",
-    phone: "+44 20 7234 5678",
-    email: "hello@londonhometransformers.co.uk",
-    image: "/api/placeholder/150/150",
-    description: "Full-service renovation company specializing in contemporary designs. Known for exceptional project management and timely completion.",
+    priceRange: "$30,000 - $55,000",
+    phone: "+61 2 9876 5432",
+    email: "hello@northernbeachesbuilders.com.au",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    description: "Full-service renovation company specializing in contemporary coastal designs. Known for exceptional project management and timely completion across the Northern Beaches.",
     completedProjects: 312,
     responseTime: "Within 4 hours",
     verified: true,
     portfolio: [
-      "Contemporary kitchen design",
-      "Open-plan living renovation",
-      "Modern bathroom suite"
+      "Coastal kitchen design",
+      "Beachside home renovation",
+      "Modern bathroom suite in Dee Why"
+    ],
+    portfolioImages: [
+      "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1571889227646-4d9b42945871?w=400&h=300&fit=crop"
     ]
   },
   {
     id: 3,
-    name: "Precision Build Solutions",
+    name: "Eastern Suburbs Elite",
     rating: 4.7,
     reviewCount: 156,
     specialties: ["Kitchen", "Traditional", "Modern"],
-    location: "North London",
+    location: "Bondi Junction, Eastern Suburbs",
     experience: "20+ years",
-    priceRange: "£30,000 - £60,000",
-    phone: "+44 20 7345 6789",
-    email: "contact@precisionbuild.co.uk",
-    image: "/api/placeholder/150/150",
-    description: "Established construction company with two decades of experience. We pride ourselves on quality craftsmanship and attention to detail.",
+    priceRange: "$40,000 - $80,000",
+    phone: "+61 2 9345 6789",
+    email: "contact@easternsurbselite.com.au",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face",
+    description: "Established construction company with two decades of experience in the Eastern Suburbs. We pride ourselves on quality craftsmanship and attention to detail.",
     completedProjects: 678,
     responseTime: "Within 6 hours",
     verified: true,
     portfolio: [
-      "Traditional kitchen restoration",
-      "Modern kitchen extension",
-      "Luxury kitchen renovation"
+      "Heritage kitchen restoration in Paddington",
+      "Modern kitchen extension in Bondi",
+      "Luxury penthouse renovation"
+    ],
+    portfolioImages: [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1556185781-a47769abb7b9?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1564540574859-0dfb63985925?w=400&h=300&fit=crop"
+    ]
+  },
+  {
+    id: 4,
+    name: "Harbour City Constructions",
+    rating: 4.6,
+    reviewCount: 203,
+    specialties: ["Kitchen", "Bathroom", "Extension"],
+    location: "Neutral Bay, North Shore",
+    experience: "18+ years",
+    priceRange: "$25,000 - $50,000",
+    phone: "+61 2 9456 7890",
+    email: "info@harbourcityconstructions.com.au",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
+    description: "Specializing in harbour-side renovations with stunning views. Our team understands the unique requirements of North Shore properties.",
+    completedProjects: 425,
+    responseTime: "Within 3 hours",
+    verified: true,
+    portfolio: [
+      "Harbour view kitchen renovation",
+      "North Shore bathroom upgrade",
+      "Open plan living extension"
+    ],
+    portfolioImages: [
+      "https://images.unsplash.com/photo-1556909502-34060a1dc2ac?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=400&h=300&fit=crop"
     ]
   }
 ];
@@ -185,9 +227,19 @@ export default function Contractors() {
                   </div>
                 </div>
 
-                {/* Portfolio */}
+                {/* Portfolio Images */}
                 <div>
                   <h4 className="font-medium text-sm mb-2">Recent Projects:</h4>
+                  <div className="grid grid-cols-3 gap-2 mb-2">
+                    {contractor.portfolioImages?.slice(0, 3).map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={contractor.portfolio[index]}
+                        className="w-full h-16 object-cover rounded-md border border-gray-200"
+                      />
+                    ))}
+                  </div>
                   <ul className="text-xs text-gray-600 space-y-1">
                     {contractor.portfolio.slice(0, 2).map((project, index) => (
                       <li key={index}>• {project}</li>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Craftly Living is a full-stack web application that connects homeowners with trusted renovation contractors. The platform serves as a matching service where users can submit their renovation projects and get matched with pre-vetted contractors based on their specific needs, budget, and location.
+Craftly Living is a full-stack web application that connects homeowners with trusted renovation contractors across North Sydney, Northern Beaches, and Eastern Suburbs. The platform serves as a matching service where users can submit their renovation projects and get matched with pre-vetted local contractors based on their specific needs, budget, and Australian location.
 
 ## System Architecture
 
@@ -104,6 +104,11 @@ Changelog:
 - June 20, 2025. Resolved budget field mapping between frontend form and backend API
 - June 20, 2025. Fixed foreign key constraints for user-less project submissions
 - June 20, 2025. Connected to new PostgreSQL database with full functionality
+- June 20, 2025. Implemented Australian focus: North Sydney, Northern Beaches, Eastern Suburbs
+- June 20, 2025. Added location search with Google Maps integration on homepage
+- June 20, 2025. Updated budget ranges to Australian dollars ($15k-$100k+)
+- June 20, 2025. Added contractor portfolio image galleries with real project samples
+- June 20, 2025. Created image upload component for contractor profiles
 ```
 
 ## User Preferences

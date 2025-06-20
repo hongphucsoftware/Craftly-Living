@@ -12,10 +12,10 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer, Loader2 } from "lucide-react";
 import type { InsertRenovationProject } from "@shared/schema";
 
-// Simplified form schema
+// Simplified form schema for Australian locations
 const formSchema = z.object({
   renovationType: z.string().min(1, "Please select a renovation type"),
-  postcode: z.string().min(1, "Please enter your postcode"),
+  postcode: z.string().min(4, "Please enter a valid Australian postcode").max(4, "Australian postcodes are 4 digits"),
   budget: z.string().min(1, "Please select a budget range"),
   style: z.string().min(1, "Please select a style"),
   timeline: z.string().min(1, "Please select a timeline"),
@@ -55,11 +55,11 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
   ];
 
   const budgetRanges = [
-    { value: "under_10k", label: "Under $10,000" },
-    { value: "10k_25k", label: "$10,000 - $25,000" },
-    { value: "25k_50k", label: "$25,000 - $50,000" },
-    { value: "50k_100k", label: "$50,000 - $100,000" },
-    { value: "over_100k", label: "Over $100,000" },
+    { value: "Under $15,000", label: "Under $15,000" },
+    { value: "$15,000 - $35,000", label: "$15,000 - $35,000" },
+    { value: "$35,000 - $65,000", label: "$35,000 - $65,000" },
+    { value: "$65,000 - $100,000", label: "$65,000 - $100,000" },
+    { value: "Over $100,000", label: "Over $100,000" },
   ];
 
   const styles = [
