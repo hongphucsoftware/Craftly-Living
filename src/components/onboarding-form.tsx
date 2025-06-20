@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer } from "lucide-react";
+import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer, Loader2 } from "lucide-react";
 import { insertRenovationProjectSchema } from "@/shared/schema";
 import type { InsertRenovationProject } from "@/shared/schema";
 
@@ -69,6 +69,7 @@ const timelines = [
 
 export default function OnboardingForm({ onSubmit, isSubmitting = false }: OnboardingFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const totalSteps = 5;
 
   const form = useForm<FormData>({
@@ -110,13 +111,24 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
     const isValid = await form.trigger(fieldsToValidate);
     
     if (isValid && currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
+      setIsTransitioning(true);
+      
+      // Add a smooth transition delay
+      setTimeout(() => {
+        setCurrentStep(currentStep + 1);
+        setIsTransitioning(false);
+      }, 300);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setCurrentStep(currentStep - 1);
+        setIsTransitioning(false);
+      }, 300);
     }
   };
 
@@ -131,7 +143,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
   const progress = (currentStep / totalSteps) * 100;
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto relative overflow-hidden">
       <CardHeader>
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -145,9 +157,19 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
             
+            {/* Loading Overlay */}
+            {isTransitioning && (
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Loader2 className="w-6 h-6 animate-spin text-red-400" />
+                  <span className="text-sm text-gray-600">Loading next step...</span>
+                </div>
+              </div>
+            )}
+            
             {/* Step 1: Renovation Type */}
             {currentStep === 1 && (
-              <div className="space-y-4">
+              <div className="space-y-4 animate-in fade-in-50 slide-in-from-right-3 duration-300">
                 <div>
                   <h3 className="text-xl font-semibold craftly-navy-text mb-2">What type of renovation?</h3>
                   <p className="text-gray-600">Select the main area you want to renovate</p>
@@ -184,7 +206,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
 
             {/* Step 2: Location */}
             {currentStep === 2 && (
-              <div className="space-y-4">
+              <div className="space-y-4 animate-in fade-in-50 slide-in-from-right-3 duration-300">
                 <div>
                   <h3 className="text-xl font-semibold craftly-navy-text mb-2">Where is your project?</h3>
                   <p className="text-gray-600">We'll match you with contractors in your area</p>
@@ -211,7 +233,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
 
             {/* Step 3: Budget */}
             {currentStep === 3 && (
-              <div className="space-y-4">
+              <div className="space-y-4 animate-in fade-in-50 slide-in-from-right-3 duration-300">
                 <div>
                   <h3 className="text-xl font-semibold craftly-navy-text mb-2">What's your budget?</h3>
                   <p className="text-gray-600">This helps us match you with contractors in your price range</p>
@@ -253,7 +275,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
 
             {/* Step 4: Style */}
             {currentStep === 4 && (
-              <div className="space-y-4">
+              <div className="space-y-4 animate-in fade-in-50 slide-in-from-right-3 duration-300">
                 <div>
                   <h3 className="text-xl font-semibold craftly-navy-text mb-2">What's your style?</h3>
                   <p className="text-gray-600">Choose the design aesthetic you prefer</p>
@@ -290,7 +312,7 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
 
             {/* Step 5: Timeline & Notes */}
             {currentStep === 5 && (
-              <div className="space-y-6">
+              <div className="space-y-6 animate-in fade-in-50 slide-in-from-right-3 duration-300">
                 <div>
                   <h3 className="text-xl font-semibold craftly-navy-text mb-2">When do you want to start?</h3>
                   <p className="text-gray-600">Help us understand your timeline and any special requirements</p>
