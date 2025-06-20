@@ -43,13 +43,9 @@ export default function Onboarding() {
   });
 
   const handleFormSubmit = (data: InsertRenovationProject) => {
-    // For MVP, we'll use a demo user ID (1)
-    // In production, this would come from authenticated user session
-    const projectData = {
-      ...data,
-      userId: 1,
-    };
-    createProjectMutation.mutate(projectData);
+    // Submit project without user ID for anonymous submissions
+    // In production, userId would come from authenticated user session
+    createProjectMutation.mutate(data);
   };
 
   return (
