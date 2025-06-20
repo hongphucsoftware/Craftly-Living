@@ -13,8 +13,8 @@ const formRenovationProjectSchema = z.object({
   budgetMax: z.string().optional(),
   style: z.string(),
   timeline: z.string(),
-  urgency: z.string().optional(),
-  additionalNotes: z.string().optional(),
+  urgency: z.string().nullish(),
+  additionalNotes: z.string().nullish(),
   userId: z.number().optional().nullable(),
 });
 
@@ -83,6 +83,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           details: error?.message || String(error)
         });
       }
+    }
+  });
+
+  app.get("/api/renovation-projects", async (req, res) => {
+    try {
+      const projects = await storage.getRenovationProjectsByUser(null);
+      res.json(projects);
+    } catch (error) {
+      console.error("Error fetching all projects:", error);
+      res.status(500).json({ error: "Failed to fetch projects" });
     }
   });
 
