@@ -1,7 +1,6 @@
-import { users, type User, type InsertUser, type RenovationProject, type InsertRenovationProject } from "@shared/schema";
-
-// modify the interface with any CRUD methods
-// you might need
+import { users, renovationProjects, type User, type InsertUser, type RenovationProject, type InsertRenovationProject } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -11,57 +10,39 @@ export interface IStorage {
   getRenovationProjectsByUser(userId: number): Promise<RenovationProject[]>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private renovationProjects: Map<number, RenovationProject>;
-  currentUserId: number;
-  currentProjectId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.renovationProjects = new Map();
-    this.currentUserId = 1;
-    this.currentProjectId = 1;
-  }
-
+export class DatabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
     return user;
   }
 
   async createRenovationProject(insertProject: InsertRenovationProject): Promise<RenovationProject> {
-    const id = this.currentProjectId++;
-    const project: RenovationProject = { 
-      ...insertProject,
-      userId: insertProject.userId || null,
-      budgetMin: insertProject.budgetMin || null,
-      budgetMax: insertProject.budgetMax || null,
-      urgency: insertProject.urgency || null,
-      additionalNotes: insertProject.additionalNotes || null,
-      id,
-      createdAt: new Date()
-    };
-    this.renovationProjects.set(id, project);
+    const [project] = await db
+      .insert(renovationProjects)
+      .values(insertProject)
+      .returning();
     return project;
   }
 
   async getRenovationProjectsByUser(userId: number): Promise<RenovationProject[]> {
-    return Array.from(this.renovationProjects.values()).filter(
-      (project) => project.userId === userId,
-    );
+    return await db
+      .select()
+      .from(renovationProjects)
+      .where(eq(renovationProjects.userId, userId));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
