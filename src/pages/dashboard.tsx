@@ -112,7 +112,7 @@ export default function Dashboard() {
         </div>
 
         <div className="space-y-6">
-          {projects?.map((project: RenovationProject) => {
+          {projects && Array.isArray(projects) && projects.map((project: RenovationProject) => {
             const contractorMatches = getContractorMatches(project);
             return (
             <Card key={project.id} className="overflow-hidden">

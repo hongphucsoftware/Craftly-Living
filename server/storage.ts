@@ -1,6 +1,5 @@
-import { users, renovationProjects, type User, type InsertUser, type RenovationProject, type InsertRenovationProject } from "@shared/schema";
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { type User, type InsertUser, type RenovationProject, type InsertRenovationProject } from "@shared/schema";
+import { supabase } from "./db";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -10,39 +9,72 @@ export interface IStorage {
   getRenovationProjectsByUser(userId: number): Promise<RenovationProject[]>;
 }
 
-export class DatabaseStorage implements IStorage {
+export class SupabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user || undefined;
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error) {
+      console.error('Error fetching user:', error);
+      return undefined;
+    }
+    return data as User;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user || undefined;
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', username)
+      .single();
+    
+    if (error) {
+      console.error('Error fetching user by username:', error);
+      return undefined;
+    }
+    return data as User;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(insertUser)
-      .returning();
-    return user;
+    const { data, error } = await supabase
+      .from('users')
+      .insert(insertUser)
+      .select()
+      .single();
+    
+    if (error) {
+      throw new Error(`Failed to create user: ${error.message}`);
+    }
+    return data as User;
   }
 
   async createRenovationProject(insertProject: InsertRenovationProject): Promise<RenovationProject> {
-    const [project] = await db
-      .insert(renovationProjects)
-      .values(insertProject)
-      .returning();
-    return project;
+    const { data, error } = await supabase
+      .from('renovation_projects')
+      .insert(insertProject)
+      .select()
+      .single();
+    
+    if (error) {
+      throw new Error(`Failed to create renovation project: ${error.message}`);
+    }
+    return data as RenovationProject;
   }
 
   async getRenovationProjectsByUser(userId: number): Promise<RenovationProject[]> {
-    return await db
-      .select()
-      .from(renovationProjects)
-      .where(eq(renovationProjects.userId, userId));
+    const { data, error } = await supabase
+      .from('renovation_projects')
+      .select('*')
+      .eq('user_id', userId);
+    
+    if (error) {
+      throw new Error(`Failed to fetch renovation projects: ${error.message}`);
+    }
+    return data as RenovationProject[];
   }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new SupabaseStorage();
