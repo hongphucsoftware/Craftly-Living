@@ -1,19 +1,23 @@
-# Supabase Database Setup
+# URGENT: Create Database Tables
 
-## Required SQL Commands
+Your application is ready but needs database tables created in Supabase.
 
-Execute these commands in your Supabase SQL Editor to create the database schema:
+## Steps to Fix the Error:
+
+1. **Go to Supabase Dashboard**: https://supabase.com/dashboard/project/wsobqmcjmukjgylzzhkl
+2. **Click "SQL Editor" in the left sidebar**
+3. **Copy and paste this SQL code exactly:**
 
 ```sql
 -- Create users table
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   username TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL
 );
 
 -- Create renovation_projects table  
-CREATE TABLE renovation_projects (
+CREATE TABLE IF NOT EXISTS renovation_projects (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
   renovation_type TEXT NOT NULL,
@@ -31,18 +35,19 @@ CREATE TABLE renovation_projects (
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE renovation_projects ENABLE ROW LEVEL SECURITY;
 
--- Create RLS policies for anon access
-CREATE POLICY "Allow anon read users" ON users FOR SELECT TO anon USING (true);
-CREATE POLICY "Allow anon insert users" ON users FOR INSERT TO anon WITH CHECK (true);
+-- Create RLS policies for public access
+CREATE POLICY "Allow public read users" ON users FOR SELECT USING (true);
+CREATE POLICY "Allow public insert users" ON users FOR INSERT WITH CHECK (true);
 
-CREATE POLICY "Allow anon read projects" ON renovation_projects FOR SELECT TO anon USING (true);
-CREATE POLICY "Allow anon insert projects" ON renovation_projects FOR INSERT TO anon WITH CHECK (true);
-CREATE POLICY "Allow anon update projects" ON renovation_projects FOR UPDATE TO anon USING (true);
+CREATE POLICY "Allow public read projects" ON renovation_projects FOR SELECT USING (true);
+CREATE POLICY "Allow public insert projects" ON renovation_projects FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow public update projects" ON renovation_projects FOR UPDATE USING (true);
 ```
 
-## Next Steps
+4. **Click "Run" to execute the SQL**
+5. **Refresh your application** - the error will be fixed
 
-1. Go to your Supabase dashboard: https://supabase.com/dashboard/project/wsobqmcjmukjgylzzhkl
-2. Navigate to SQL Editor 
-3. Run the above SQL commands
-4. The application will automatically connect to your Supabase database
+## What This Does:
+- Creates the `users` and `renovation_projects` tables
+- Sets up security policies so your app can read/write data
+- Fixes the "Failed to create renovation project" error
