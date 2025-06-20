@@ -23,11 +23,11 @@ Craftly Living is a full-stack web application that connects homeowners with tru
 - **Development**: Hot module replacement with Vite integration
 
 ### Data Storage Solutions
-- **Primary Database**: PostgreSQL with Neon serverless connection
+- **Primary Database**: Supabase PostgreSQL database
 - **Production Storage**: DatabaseStorage class implementing full PostgreSQL integration
-- **ORM**: Drizzle ORM with type-safe queries and schema management
-- **Migrations**: Drizzle Kit for database schema migrations
-- **Connection**: Neon serverless pool with WebSocket support
+- **ORM**: Drizzle ORM with type-safe queries and schema management  
+- **Connection**: Supabase connection via Neon serverless pool
+- **Tables**: Users and renovation_projects with proper relationships
 
 ## Key Components
 
@@ -100,6 +100,7 @@ Changelog:
 - June 17, 2025. Added multi-step homeowner onboarding form with renovation project data collection
 - June 20, 2025. Migrated from in-memory storage to PostgreSQL database integration
 - June 20, 2025. Implemented DatabaseStorage class with Drizzle ORM and Neon serverless connection
+- June 20, 2025. Connected to Supabase PostgreSQL database with proper schema setup
 ```
 
 ## User Preferences
