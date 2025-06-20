@@ -31,7 +31,7 @@ export default function Onboarding() {
         title: "Project Created Successfully!",
         description: "We're finding the perfect contractors for your renovation.",
       });
-      setLocation("/dashboard");
+      setLocation("/contractors");
     },
     onError: (error: any) => {
       toast({
