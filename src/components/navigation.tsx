@@ -46,6 +46,12 @@ export default function Navigation() {
             <div className="hidden md:flex flex-1 justify-center">
               <div className="flex items-baseline space-x-8">
                 <button 
+                  onClick={() => setLocation('/dashboard')}
+                  className="text-[#7f1d1d] hover:text-red-900 transition-colors duration-200 font-medium"
+                >
+                  Dashboard
+                </button>
+                <button 
                   onClick={() => scrollToSection('how-it-works')}
                   className="text-[#7f1d1d] hover:text-red-900 transition-colors duration-200 font-medium"
                 >
@@ -84,6 +90,12 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+              <button 
+                onClick={() => setLocation('/dashboard')}
+                className="block w-full text-left px-3 py-2 text-[#7f1d1d] hover:text-red-900 font-medium"
+              >
+                Dashboard
+              </button>
               <button 
                 onClick={() => scrollToSection('how-it-works')}
                 className="block w-full text-left px-3 py-2 text-[#7f1d1d] hover:text-red-900 font-medium"
