@@ -53,7 +53,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         budgetMax = budgetRange.max;
       }
       
-      const projectData = {
+      const projectData: any = {
         renovationType: formData.renovationType,
         postcode: formData.postcode,
         budgetMin,
@@ -62,8 +62,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         timeline: formData.timeline,
         urgency: formData.urgency,
         additionalNotes: formData.additionalNotes,
-        userId: formData.userId,
       };
+      
+      // Only include userId if it's provided and valid
+      if (formData.userId && formData.userId > 0) {
+        projectData.userId = formData.userId;
+      }
       
       // Validate against the actual database schema
       const validatedData = insertRenovationProjectSchema.parse(projectData);
