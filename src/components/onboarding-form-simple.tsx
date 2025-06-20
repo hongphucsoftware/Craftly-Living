@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer, Loader2 } from "lucide-react";
-import type { InsertRenovationProject } from "@/shared/schema";
+import type { InsertRenovationProject } from "@shared/schema";
 
 // Simplified form schema
 const formSchema = z.object({

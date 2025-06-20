@@ -11,8 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ArrowRight, Home, Bath, Utensils, Bed, Sofa, Hammer, Loader2 } from "lucide-react";
-import { insertRenovationProjectSchema } from "@/shared/schema";
-import type { InsertRenovationProject } from "@/shared/schema";
+import { insertRenovationProjectSchema } from "@shared/schema";
+import type { InsertRenovationProject } from "@shared/schema";
 
 // Simplified form validation schema
 const formSchema = z.object({

@@ -5,12 +5,12 @@ import * as schema from "@shared/schema";
 
 neonConfig.webSocketConstructor = ws;
 
-// Use Supabase database URL
-const databaseUrl = process.env.SUPABASE_DATABASE_URL;
+// Use the DATABASE_URL environment variable
+const databaseUrl = process.env.DATABASE_URL;
 
 if (!databaseUrl) {
   throw new Error(
-    "SUPABASE_DATABASE_URL must be set for database connection",
+    "DATABASE_URL must be set for database connection",
   );
 }
 
