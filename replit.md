@@ -124,6 +124,10 @@ Changelog:
 - June 21, 2025. Implemented amber color scheme for warmer, curated feel
 - June 21, 2025. Added 3-step process visualization for homeowner journey
 - June 21, 2025. Created B2B messaging for builder recruitment with quality lead focus
+- June 23, 2025. Replaced featured contractors with "Featured Tradies" carousel section
+- June 23, 2025. Implemented local tradie profiles by area with real project portfolios
+- June 23, 2025. Added Luke Sully example tradie for Northern Beaches plumbing services
+- June 23, 2025. Updated contact information to +61 401 093 899 and hi.craftlyliving@gmail.com
 ```
 
 ## User Preferences

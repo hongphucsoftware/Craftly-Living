@@ -1,236 +1,352 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Star, MapPin, Phone, Mail, Clock, CheckCircle } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Star, MapPin, Award } from "lucide-react";
-
-const featuredContractors = [
-  {
-    id: 1,
-    name: "Michael Chen",
-    company: "Premium Kitchens Sydney",
-    specialty: "Kitchen Renovations",
-    location: "Mosman, NSW",
-    rating: 4.9,
-    reviewCount: 127,
-    completedProjects: 89,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    description: "Specializing in high-end kitchen transformations with 15+ years experience.",
-    badges: ["Licensed", "Insured", "Award Winner"]
-  },
-  {
-    id: 2,
-    name: "Sarah Williams",
-    company: "Coastal Bathrooms",
-    specialty: "Bathroom Specialist",
-    location: "Manly, NSW",
-    rating: 4.8,
-    reviewCount: 94,
-    completedProjects: 67,
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b300?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    description: "Creating beautiful, functional bathrooms that stand the test of time.",
-    badges: ["Licensed", "Eco-Friendly", "Design Expert"]
-  },
-  {
-    id: 3,
-    name: "Tom Rodriguez",
-    company: "Harbour City Builders",
-    specialty: "General Building",
-    location: "North Sydney, NSW",
-    rating: 5.0,
-    reviewCount: 156,
-    completedProjects: 143,
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    description: "Full home renovations and extensions with meticulous attention to detail.",
-    badges: ["Master Builder", "Licensed", "Quality Guarantee"]
-  },
-  {
-    id: 4,
-    name: "Emma Thompson",
-    company: "Urban Living Designs",
-    specialty: "Interior Design & Build",
-    location: "Paddington, NSW",
-    rating: 4.9,
-    reviewCount: 88,
-    completedProjects: 72,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    description: "Combining design expertise with quality construction for stunning results.",
-    badges: ["Design Award", "Licensed", "Sustainable Build"]
-  },
-  {
-    id: 5,
-    name: "James Park",
-    company: "Elite Home Extensions",
-    specialty: "Extensions & Additions",
-    location: "Neutral Bay, NSW",
-    rating: 4.8,
-    reviewCount: 112,
-    completedProjects: 95,
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    description: "Seamlessly blending new extensions with existing architecture.",
-    badges: ["Heritage Specialist", "Licensed", "Architect Partner"]
-  }
-];
 
 export default function FeaturedContractors() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  
+  const tradies = [
+    {
+      id: 1,
+      name: "David Miller",
+      business: "North Shore Renovations",
+      rating: 4.9,
+      reviews: 127,
+      specialties: ["Kitchen", "Modern", "Bathroom"],
+      location: "North Sydney, NSW",
+      experience: "15+ years",
+      projects: 487,
+      priceRange: "$35,000 - $65,000",
+      responseTime: "Typically responds within 2 hours",
+      phone: "+61 2 9555 0123",
+      email: "david@northshorerenos.com.au",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
+      portfolioImages: [
+        {
+          url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Modern kitchen with harbour views",
+          description: "Contemporary open-plan design"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Luxury kitchen renovation in Cremorne",
+          description: "Award-winning design"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Modern kitchen extension in Bondi",
+          description: "Heritage kitchen restoration in Paddington"
+        }
+      ],
+      badges: ["✓ Verified", "✓ Award-winning", "✓ Quick Response"],
+      description: "Award-winning kitchen specialists with expertise in modern and contemporary designs. We've completed over 500 kitchen renovations across North Sydney and surrounding areas.",
+      verified: true
+    },
+    {
+      id: 2,
+      name: "Sarah Chen",
+      business: "Northern Beaches Builders",
+      rating: 4.8,
+      reviews: 89,
+      specialties: ["Kitchen", "Bathroom", "Contemporary"],
+      location: "Manly, Northern Beaches",
+      experience: "12+ years",
+      projects: 312,
+      priceRange: "$30,000 - $55,000",
+      responseTime: "Typically responds within 4 hours",
+      phone: "+61 2 9977 0456",
+      email: "sarah@nbbuilders.com.au",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b332b1c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
+      portfolioImages: [
+        {
+          url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Coastal kitchen design",
+          description: "Beachside home renovation"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Modern bathroom suite in Dee Why",
+          description: "Contemporary coastal designs"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Luxury penthouse renovation",
+          description: "Luxury penthouse renovation"
+        }
+      ],
+      badges: ["✓ Verified", "✓ Coastal Specialist", "✓ Eco-Friendly"],
+      description: "Full-service renovation company specializing in contemporary coastal designs. Known for exceptional project management and timely completion across the Northern Beaches.",
+      verified: true
+    },
+    {
+      id: 3,
+      name: "Marcus Thompson",
+      business: "Eastern Suburbs Elite",
+      rating: 4.7,
+      reviews: 156,
+      specialties: ["Kitchen", "Traditional", "Modern"],
+      location: "Bondi Junction, Eastern Suburbs",
+      experience: "20+ years",
+      projects: 678,
+      priceRange: "$40,000 - $80,000",
+      responseTime: "Typically responds within 6 hours",
+      phone: "+61 2 9387 0789",
+      email: "marcus@eselite.com.au",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
+      portfolioImages: [
+        {
+          url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Heritage kitchen restoration in Paddington",
+          description: "Heritage kitchen restoration in Paddington"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Modern kitchen extension in Bondi",
+          description: "Modern kitchen extension in Bondi"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Luxury penthouse renovation",
+          description: "Luxury penthouse renovation"
+        }
+      ],
+      badges: ["✓ Verified", "✓ Master Craftsman", "✓ Heritage Specialist"],
+      description: "Established construction company with two decades of experience in the Eastern Suburbs. We pride ourselves on quality craftsmanship and attention to detail.",
+      verified: true
+    },
+    {
+      id: 4,
+      name: "Luke Sully",
+      business: "Harbour City Constructions",
+      rating: 4.6,
+      reviews: 203,
+      specialties: ["Plumbing", "Bathroom", "Kitchen"],
+      location: "Northern Beaches",
+      experience: "18+ years",
+      projects: 542,
+      priceRange: "$45,000 - $75,000",
+      responseTime: "Typically responds within 3 hours",
+      phone: "+61 2 9955 0321",
+      email: "luke@harbourcity.com.au",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
+      portfolioImages: [
+        {
+          url: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Luxury kitchen renovation",
+          description: "Luxury kitchen renovation"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Modern bathroom suite",
+          description: "Modern bathroom suite"
+        },
+        {
+          url: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
+          title: "Heritage home plumbing",
+          description: "Heritage home plumbing"
+        }
+      ],
+      badges: ["✓ Verified", "✓ Master Plumber", "✓ Northern Beaches Specialist"],
+      description: "Specializing in harbour-side renovations with stunning views. Our team understands the unique challenges of waterfront properties and coastal plumbing requirements.",
+      verified: true
+    }
+  ];
 
-  // Auto-play functionality
+  // Auto-advance carousel
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    
-    const interval = setInterval(() => {
+    const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex === featuredContractors.length - 1 ? 0 : prevIndex + 1
+        prevIndex === tradies.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [tradies.length]);
 
   const nextSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === featuredContractors.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentIndex(currentIndex === tradies.length - 1 ? 0 : currentIndex + 1);
   };
 
   const prevSlide = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? featuredContractors.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex(currentIndex === 0 ? tradies.length - 1 : currentIndex - 1);
   };
 
   const goToSlide = (index: number) => {
-    setIsAutoPlaying(false);
     setCurrentIndex(index);
   };
 
+  const currentTradie = tradies[currentIndex];
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#fff1f2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Meet Our Top-Rated Contractors
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-[#be123c] mb-4">
+            Featured Tradies
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Handpicked professionals who consistently deliver exceptional results for Sydney homeowners
+          <p className="text-xl text-[#7f1d1d] max-w-3xl mx-auto">
+            Meet trusted local tradies who deliver exceptional results across Sydney's premier suburbs
           </p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative">
-          {/* Main Carousel */}
-          <div className="overflow-hidden rounded-2xl">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {featuredContractors.map((contractor) => (
-                <div key={contractor.id} className="w-full flex-shrink-0">
-                  <Card className="mx-4 border-none shadow-lg bg-gradient-to-br from-red-50 to-pink-50 border border-red-100">
-                    <CardContent className="p-8">
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                        {/* Contractor Photo */}
-                        <div className="text-center">
-                          <div className="relative inline-block">
-                            <img
-                              src={contractor.image}
-                              alt={contractor.name}
-                              className="w-32 h-32 rounded-full object-cover mx-auto shadow-lg"
-                            />
-                            <div className="absolute -bottom-2 -right-2 bg-red-500 text-white p-2 rounded-full">
-                              <Award className="h-4 w-4" />
-                            </div>
-                          </div>
-                          <h3 className="text-xl font-bold text-gray-900 mt-4">{contractor.name}</h3>
-                          <p className="text-red-600 font-semibold">{contractor.company}</p>
-                          <p className="text-gray-600">{contractor.specialty}</p>
-                        </div>
-
-                        {/* Details */}
-                        <div className="lg:col-span-2">
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star 
-                                  key={i} 
-                                  className={`h-5 w-5 ${i < Math.floor(contractor.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
-                                />
-                              ))}
-                              <span className="font-semibold text-gray-900 ml-2">{contractor.rating}</span>
-                              <span className="text-gray-600">({contractor.reviewCount} reviews)</span>
-                            </div>
-                            <div className="flex items-center gap-1 text-gray-600">
-                              <MapPin className="h-4 w-4" />
-                              <span>{contractor.location}</span>
-                            </div>
-                          </div>
-
-                          <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-                            {contractor.description}
-                          </p>
-
-                          <div className="flex items-center gap-4 mb-6">
-                            <div className="text-center">
-                              <div className="text-2xl font-bold text-red-600">{contractor.completedProjects}</div>
-                              <div className="text-sm text-gray-600">Projects Completed</div>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                              {contractor.badges.map((badge, index) => (
-                                <span
-                                  key={index}
-                                  className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium"
-                                >
-                                  {badge}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-
-                          <Button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl">
-                            View Profile
-                          </Button>
-                        </div>
+        <div className="max-w-4xl mx-auto">
+          <Card className="bg-white border border-[#fca5a5] shadow-lg rounded-2xl overflow-hidden">
+            <div className="p-8">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center space-x-4">
+                  <img 
+                    src={currentTradie.image}
+                    alt={currentTradie.name}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-[#fca5a5]"
+                  />
+                  <div>
+                    <h3 className="text-xl font-bold text-[#be123c] mb-1 flex items-center">
+                      {currentTradie.business}
+                      {currentTradie.verified && (
+                        <CheckCircle className="w-5 h-5 text-green-500 ml-2" />
+                      )}
+                    </h3>
+                    <div className="flex items-center space-x-4 mb-2">
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="ml-1 font-semibold text-[#be123c]">
+                          {currentTradie.rating}
+                        </span>
+                        <span className="text-[#7f1d1d] ml-1 text-sm">
+                          ({currentTradie.reviews} reviews)
+                        </span>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                    <div className="flex items-center text-[#7f1d1d] text-sm">
+                      <MapPin className="w-4 h-4 mr-1" />
+                      <span>{currentTradie.location}</span>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-[#7f1d1d] mb-6 leading-relaxed">
+                {currentTradie.description}
+              </p>
+
+              {/* Specialties */}
+              <div className="mb-6">
+                <div className="flex flex-wrap gap-2">
+                  {currentTradie.specialties.map((specialty, index) => (
+                    <span 
+                      key={index}
+                      className="bg-[#fff1f2] text-[#be123c] px-3 py-1 rounded-full text-sm font-medium border border-[#fca5a5]"
+                    >
+                      {specialty}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-sm">
+                <div>
+                  <span className="text-[#7f1d1d]">{currentTradie.experience} • {currentTradie.projects} projects</span>
+                </div>
+                <div>
+                  <span className="text-[#7f1d1d]">{currentTradie.priceRange}</span>
+                </div>
+                <div className="flex items-center text-green-600">
+                  <Clock className="w-4 h-4 mr-1" />
+                  <span>{currentTradie.responseTime}</span>
+                </div>
+              </div>
+
+              {/* Recent Projects */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-[#be123c] mb-3">Recent Projects:</h4>
+                <div className="grid grid-cols-3 gap-3">
+                  {currentTradie.portfolioImages.map((project, index) => (
+                    <div key={index} className="relative group">
+                      <img 
+                        src={project.url}
+                        alt={project.title}
+                        className="w-full h-24 object-cover rounded-lg border border-[#fca5a5]"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                        <p className="text-white text-xs text-center px-2">{project.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {currentTradie.badges.map((badge, index) => (
+                  <span 
+                    key={index}
+                    className="text-green-700 text-sm font-medium"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  className="bg-[#be123c] hover:bg-[#dc2626] text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+                  onClick={() => window.open(`tel:${currentTradie.phone}`, '_self')}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-[#be123c] text-[#be123c] hover:bg-[#fff1f2] px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+                  onClick={() => window.open(`mailto:${currentTradie.email}`, '_blank')}
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email
+                </Button>
+                <Button 
+                  className="bg-[#be123c] hover:bg-[#dc2626] text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+                >
+                  Get Quote
+                </Button>
+              </div>
+            </div>
+          </Card>
+
+          {/* Navigation */}
+          <div className="flex justify-center items-center mt-8 space-x-4">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 rounded-full bg-white border border-[#fca5a5] text-[#be123c] hover:bg-[#fff1f2] transition-colors duration-200 flex items-center justify-center"
+              aria-label="Previous tradie"
+            >
+              ←
+            </button>
+            
+            <div className="flex space-x-2">
+              {tradies.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    index === currentIndex ? 'bg-[#be123c]' : 'bg-[#fca5a5]'
+                  }`}
+                  aria-label={`Go to tradie ${index + 1}`}
+                />
               ))}
             </div>
-          </div>
-
-          {/* Navigation Arrows */}
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-red-200 hover:border-red-300 z-10"
-          >
-            <ChevronLeft className="h-5 w-5 text-red-600" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white border-red-200 hover:border-red-300 z-10"
-          >
-            <ChevronRight className="h-5 w-5 text-red-600" />
-          </Button>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-8 gap-2">
-          {featuredContractors.map((_, index) => (
+            
             <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                index === currentIndex ? 'bg-red-500' : 'bg-gray-300 hover:bg-red-300'
-              }`}
-            />
-          ))}
+              onClick={nextSlide}
+              className="w-10 h-10 rounded-full bg-white border border-[#fca5a5] text-[#be123c] hover:bg-[#fff1f2] transition-colors duration-200 flex items-center justify-center"
+              aria-label="Next tradie"
+            >
+              →
+            </button>
+          </div>
         </div>
       </div>
     </section>
