@@ -24,7 +24,7 @@ Craftly Living is a full-stack web application that connects homeowners with tru
 
 ### Data Storage Solutions
 - **Primary Database**: Supabase PostgreSQL database
-- **Production Storage**: DatabaseStorage class implementing full PostgreSQL integration
+- **Production Storage**: `SupabaseStorage` class wrapping the Supabase JS client for all database operations
 - **ORM**: Drizzle ORM with type-safe queries and schema management  
 - **Connection**: Supabase connection via Neon serverless pool
 - **Tables**: Users and renovation_projects with proper relationships
@@ -100,7 +100,7 @@ Changelog:
 - June 17, 2025. Initial setup with landing page components
 - June 17, 2025. Added multi-step homeowner onboarding form with renovation project data collection
 - June 20, 2025. Migrated from in-memory storage to PostgreSQL database integration
-- June 20, 2025. Implemented DatabaseStorage class with Drizzle ORM and Neon serverless connection
+- June 20, 2025. Implemented `SupabaseStorage` class using the Supabase JS client for database access
 - June 20, 2025. Fixed database connection issues and TypeScript path resolution
 - June 20, 2025. Resolved budget field mapping between frontend form and backend API
 - June 20, 2025. Fixed foreign key constraints for user-less project submissions
