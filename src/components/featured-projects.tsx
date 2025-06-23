@@ -21,8 +21,8 @@ export default function FeaturedProjects() {
     {
       title: "Master Bedroom",
       description: "Custom built-in storage",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300",
-      alt: "Elegant bedroom renovation with custom built-ins and modern decor"
+      image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300",
+      alt: "Bright and airy bedroom renovation with custom built-ins and natural lighting"
     }
   ];
 

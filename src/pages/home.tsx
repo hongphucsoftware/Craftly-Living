@@ -1,5 +1,6 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
+import FeaturedContractors from "@/components/featured-contractors";
 import HowItWorks from "@/components/how-it-works";
 import FeaturedProjects from "@/components/featured-projects";
 import Testimonials from "@/components/testimonials";
@@ -13,6 +14,7 @@ export default function Home() {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
+      <FeaturedContractors />
       <HowItWorks />
       <FeaturedProjects />
       <Testimonials />

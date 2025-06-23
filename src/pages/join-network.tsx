@@ -8,7 +8,7 @@ export default function JoinNetwork() {
 
   const handleJoinNetwork = () => {
     // For now, redirect to contact form or external application
-    window.open('mailto:tradies@craftlyliving.com?subject=Join Network Application', '_blank');
+    window.open('mailto:hi.craftlyliving@gmail.com?subject=Join Network Application', '_blank');
   };
 
   return (
@@ -258,11 +258,11 @@ export default function JoinNetwork() {
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-sm text-yellow-100">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span>1800 CRAFTLY</span>
+              <span>+61 401 093 899</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              <span>tradies@craftlyliving.com</span>
+              <span>hi.craftlyliving@gmail.com</span>
             </div>
           </div>
         </div>
