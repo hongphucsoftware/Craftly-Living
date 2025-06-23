@@ -117,6 +117,13 @@ Changelog:
 - June 20, 2025. Configured Row Level Security policies for public access
 - June 20, 2025. Successfully created database tables in Supabase with full functionality
 - June 20, 2025. Verified project creation and database operations working correctly
+- June 21, 2025. Split platform into distinct homeowner and builder audiences
+- June 21, 2025. Redesigned homepage with warm, reassuring homeowner-focused messaging
+- June 21, 2025. Created dedicated builder network page at /join-network
+- June 21, 2025. Updated navigation to separate homeowner and tradie sections
+- June 21, 2025. Implemented amber color scheme for warmer, curated feel
+- June 21, 2025. Added 3-step process visualization for homeowner journey
+- June 21, 2025. Created B2B messaging for builder recruitment with quality lead focus
 ```
 
 ## User Preferences
