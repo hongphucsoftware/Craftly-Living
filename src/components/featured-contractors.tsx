@@ -57,7 +57,7 @@ export default function FeaturedContractors() {
       responseTime: "Typically responds within 4 hours",
       phone: "+61 2 9977 0456",
       email: "sarah@nbbuilders.com.au",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b332b1c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=80&h=80",
       portfolioImages: [
         {
           url: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150",
