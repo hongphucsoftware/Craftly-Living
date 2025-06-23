@@ -42,7 +42,6 @@ export default function LocationSearch({ onSearch, defaultLocation = "North Sydn
   const handleLocationSelect = (location: string) => {
     setSearchQuery(location);
     setShowSuggestions(false);
-    onSearch(location);
   };
 
   return (
@@ -85,7 +84,7 @@ export default function LocationSearch({ onSearch, defaultLocation = "North Sydn
         
         <Button 
           onClick={handleSearch}
-          className="px-6 py-3 text-lg bg-blue-600 hover:bg-blue-700"
+          className="px-6 py-3 text-lg bg-red-500 hover:bg-red-600 text-white"
         >
           <Search className="h-5 w-5 mr-2" />
           Find Contractors

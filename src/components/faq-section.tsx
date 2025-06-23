@@ -57,7 +57,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+    <section className="py-20 bg-gradient-to-br from-red-50 to-pink-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
@@ -67,17 +67,17 @@ export default function FAQSection() {
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl shadow-lg border border-amber-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-2xl shadow-lg border border-red-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               <button
-                className="w-full flex items-center justify-between px-6 py-5 focus:outline-none hover:bg-amber-50 transition-colors duration-200"
+                className="w-full flex items-center justify-between px-6 py-5 focus:outline-none hover:bg-red-50 transition-colors duration-200"
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-panel-${idx}`}
               >
                 <span className="text-lg font-semibold text-gray-900 text-left">{faq.question}</span>
                 <span
-                  className={`ml-4 text-amber-600 text-2xl transform transition-transform duration-200 ${openIndex === idx ? 'rotate-45' : ''}`}
+                  className={`ml-4 text-red-600 text-2xl transform transition-transform duration-200 ${openIndex === idx ? 'rotate-45' : ''}`}
                   aria-hidden="true"
                 >
                   +
@@ -86,7 +86,7 @@ export default function FAQSection() {
               {openIndex === idx && (
                 <div
                   id={`faq-panel-${idx}`}
-                  className="px-6 pb-5 text-gray-700 text-base leading-relaxed border-t border-amber-100 bg-amber-50/30"
+                  className="px-6 pb-5 text-gray-700 text-base leading-relaxed border-t border-red-100 bg-red-50/30"
                 >
                   {faq.answer}
                 </div>

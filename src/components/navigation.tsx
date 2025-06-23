@@ -47,29 +47,22 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => scrollToSection('how-it-works')}
-              className="text-gray-700 hover:text-amber-600 transition-colors duration-200 font-medium"
+              className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium"
             >
               How It Works
             </button>
             <button 
               onClick={() => scrollToSection('testimonials')}
-              className="text-gray-700 hover:text-amber-600 transition-colors duration-200 font-medium"
+              className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium"
             >
               Reviews
             </button>
             <button 
               onClick={() => setLocation('/join-network')}
-              className="text-gray-700 hover:text-amber-600 transition-colors duration-200 font-medium"
+              className="text-gray-700 hover:text-red-600 transition-colors duration-200 font-medium"
             >
               For Tradies
             </button>
-            <Button 
-              onClick={() => setLocation('/onboarding')}
-              className="bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-2xl font-semibold transition-all duration-300"
-            >
-              Get Matched
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
           
           {/* Mobile menu button */}
@@ -87,34 +80,25 @@ export default function Navigation() {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-amber-100">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-red-100">
               <button 
                 onClick={() => scrollToSection('how-it-works')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-600 font-medium"
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-600 font-medium"
               >
                 How It Works
               </button>
               <button 
                 onClick={() => scrollToSection('testimonials')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-600 font-medium"
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-600 font-medium"
               >
                 Reviews
               </button>
               <button 
                 onClick={() => setLocation('/join-network')}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-600 font-medium"
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-600 font-medium"
               >
                 For Tradies
               </button>
-              <div className="px-3 py-2">
-                <Button 
-                  onClick={() => setLocation('/onboarding')}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-2xl font-semibold"
-                >
-                  Get Matched
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
             </div>
           </div>
         )}
