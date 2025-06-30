@@ -517,18 +517,18 @@ export default function BuilderSignup() {
                           </button>
                         </div>
                       ))}
-                      
-                      {portfolioImages.length < 6 && (
-                        <div className="border-2 border-dashed border-amber-300 rounded-lg p-4 flex flex-col items-center justify-center h-32">
-                          <ImageUpload
-                            onImageUpload={handlePortfolioImageUpload}
-                            onImageRemove={() => {}}
-                            maxSize={5}
-                            accept="image/*"
-                          />
-                        </div>
-                      )}
                     </div>
+                    
+                    {portfolioImages.length < 6 && (
+                      <div className="mt-4">
+                        <ImageUpload
+                          onImageUpload={handlePortfolioImageUpload}
+                          onImageRemove={() => {}}
+                          maxSize={5}
+                          accept="image/*"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
 

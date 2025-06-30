@@ -64,7 +64,7 @@ export default function JoinNetwork() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
-              onClick={handleJoinNetwork}
+              onClick={() => setLocation('/builder-signup')}
               size="lg" 
               className="bg-yellow-500 hover:bg-yellow-600 text-white px-8 py-4 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
@@ -264,7 +264,7 @@ export default function JoinNetwork() {
             </Button>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-sm text-yellow-100">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center items-center text-sm text-white">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
               <span>+61 401 093 899</span>
