@@ -24,6 +24,9 @@ async function build() {
     
     console.log('🔧 Setting up production structure...');
     
+    // Ensure dist directory exists
+    await mkdir('dist', { recursive: true });
+    
     // Copy server file to expected location
     await copyFile('server-dist/index.js', 'dist/index.js');
     
@@ -36,6 +39,7 @@ async function build() {
     
   } catch (error) {
     console.error('❌ Build failed:', error.message);
+    console.error('Stack trace:', error.stack);
     process.exit(1);
   }
 }
