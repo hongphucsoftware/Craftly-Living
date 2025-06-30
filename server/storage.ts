@@ -48,7 +48,7 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(renovationProjects).where(eq(renovationProjects.userId, userId));
   }
 
-  async createBuilder(insertBuilder: InsertBuilder): Promise<Builder> {
+  async createBuilder(insertBuilder: any): Promise<Builder> {
     const [builder] = await db
       .insert(builders)
       .values(insertBuilder)

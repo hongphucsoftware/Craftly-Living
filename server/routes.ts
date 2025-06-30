@@ -113,7 +113,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/builders", async (req, res) => {
     try {
       const { insertBuilderSchema } = await import("@shared/schema");
-      const validatedData = insertBuilderSchema.parse(req.body);
+      
+      // Clean up empty string values for optional fields
+      const cleanedData = {
+        ...req.body,
+        priceRangeMin: req.body.priceRangeMin && req.body.priceRangeMin !== "" ? req.body.priceRangeMin : null,
+        priceRangeMax: req.body.priceRangeMax && req.body.priceRangeMax !== "" ? req.body.priceRangeMax : null,
+        abn: req.body.abn && req.body.abn !== "" ? req.body.abn : null,
+        licenseNumber: req.body.licenseNumber && req.body.licenseNumber !== "" ? req.body.licenseNumber : null,
+        websiteUrl: req.body.websiteUrl && req.body.websiteUrl !== "" ? req.body.websiteUrl : null,
+        insuranceDetails: req.body.insuranceDetails && req.body.insuranceDetails !== "" ? req.body.insuranceDetails : null,
+        profileImageUrl: req.body.profileImageUrl && req.body.profileImageUrl !== "" ? req.body.profileImageUrl : null,
+        portfolioImages: req.body.portfolioImages || [],
+      };
+      
+      const validatedData = insertBuilderSchema.parse(cleanedData);
+      
+      // Transform data for database insertion
+      const dbData = {
+        ...validatedData,
+        serviceAreas: JSON.stringify(validatedData.serviceAreas),
+        specialties: JSON.stringify(validatedData.specialties),
+        portfolioImages: JSON.stringify(validatedData.portfolioImages),
+      };
+      
+
       
       // Check if builder already exists
       const existingBuilder = await storage.getBuilderByEmail(req.body.email);
@@ -121,7 +145,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Builder with this email already exists" });
       }
 
-      const builder = await storage.createBuilder(validatedData);
+      const builder = await storage.createBuilder(dbData);
       res.json(builder);
     } catch (error: any) {
       if (error instanceof z.ZodError) {

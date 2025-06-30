@@ -69,9 +69,9 @@ export const insertBuilderSchema = createInsertSchema(builders).omit({
   createdAt: true,
   updatedAt: true,
 }).extend({
-  serviceAreas: z.array(z.string()).transform((areas) => JSON.stringify(areas)),
-  specialties: z.array(z.string()).transform((specialties) => JSON.stringify(specialties)),
-  portfolioImages: z.array(z.string()).optional().transform((images) => images ? JSON.stringify(images) : null),
+  serviceAreas: z.array(z.string()),
+  specialties: z.array(z.string()),
+  portfolioImages: z.array(z.string()).optional(),
   priceRangeMin: z.string().optional().nullable(),
   priceRangeMax: z.string().optional().nullable(),
 });
