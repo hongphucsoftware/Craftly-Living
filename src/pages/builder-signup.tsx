@@ -114,11 +114,17 @@ export default function BuilderSignup() {
       
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast({
-        title: "Success!",
-        description: "Your builder profile has been created successfully. We'll review your application and contact you soon.",
+        title: "Profile Created Successfully!",
+        description: "Welcome to the Craftly Living network. You can now customize your profile and start receiving leads.",
       });
+      
+      // Redirect to builder dashboard after a short delay
+      setTimeout(() => {
+        window.location.href = `/builder-dashboard/${data.id}`;
+      }, 2000);
+      
       form.reset();
       setProfileImage(undefined);
       setPortfolioImages([]);
