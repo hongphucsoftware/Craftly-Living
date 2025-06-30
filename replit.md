@@ -128,6 +128,10 @@ Changelog:
 - June 23, 2025. Implemented local tradie profiles by area with real project portfolios
 - June 23, 2025. Added Luke Sully example tradie for Northern Beaches plumbing services
 - June 23, 2025. Updated contact information to +61 401 093 899 and hi.craftlyliving@gmail.com
+- June 30, 2025. Created comprehensive builder profile signup page with image upload functionality
+- June 30, 2025. Added builders database table and API endpoints for professional registration
+- June 30, 2025. Integrated builder signup form into join network page with professional UI
+- June 30, 2025. Fixed database connection issues by migrating from Supabase to PostgreSQL
 ```
 
 ## User Preferences

@@ -109,6 +109,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Builder routes
+  app.post("/api/builders", async (req, res) => {
+    try {
+      const { insertBuilderSchema } = await import("@shared/schema");
+      const validatedData = insertBuilderSchema.parse(req.body);
+      
+      // Check if builder already exists
+      const existingBuilder = await storage.getBuilderByEmail(req.body.email);
+      if (existingBuilder) {
+        return res.status(400).json({ error: "Builder with this email already exists" });
+      }
+
+      const builder = await storage.createBuilder(validatedData);
+      res.json(builder);
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: "Invalid builder data", details: error.errors });
+      } else {
+        console.error("Error creating builder:", error);
+        res.status(500).json({ 
+          error: "Failed to create builder profile", 
+          details: error?.message || String(error)
+        });
+      }
+    }
+  });
+
+  app.get("/api/builders", async (req, res) => {
+    try {
+      const builders = await storage.getAllBuilders();
+      res.json(builders);
+    } catch (error) {
+      console.error("Error fetching builders:", error);
+      res.status(500).json({ error: "Failed to fetch builders" });
+    }
+  });
+
+  app.get("/api/builders/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid builder ID" });
+      }
+      const builder = await storage.getBuilder(id);
+      if (!builder) {
+        return res.status(404).json({ error: "Builder not found" });
+      }
+      res.json(builder);
+    } catch (error) {
+      console.error("Error fetching builder:", error);
+      res.status(500).json({ error: "Failed to fetch builder" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

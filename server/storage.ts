@@ -1,4 +1,4 @@
-import { users, type User, type InsertUser, renovationProjects, type RenovationProject, type InsertRenovationProject } from "@shared/schema";
+import { users, type User, type InsertUser, renovationProjects, type RenovationProject, type InsertRenovationProject, builders, type Builder, type InsertBuilder } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -8,6 +8,10 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createRenovationProject(project: InsertRenovationProject): Promise<RenovationProject>;
   getRenovationProjectsByUser(userId: number | null): Promise<RenovationProject[]>;
+  createBuilder(builder: InsertBuilder): Promise<Builder>;
+  getBuilder(id: number): Promise<Builder | undefined>;
+  getBuilderByEmail(email: string): Promise<Builder | undefined>;
+  getAllBuilders(): Promise<Builder[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -42,6 +46,28 @@ export class DatabaseStorage implements IStorage {
       return await db.select().from(renovationProjects);
     }
     return await db.select().from(renovationProjects).where(eq(renovationProjects.userId, userId));
+  }
+
+  async createBuilder(insertBuilder: InsertBuilder): Promise<Builder> {
+    const [builder] = await db
+      .insert(builders)
+      .values(insertBuilder)
+      .returning();
+    return builder;
+  }
+
+  async getBuilder(id: number): Promise<Builder | undefined> {
+    const [builder] = await db.select().from(builders).where(eq(builders.id, id));
+    return builder || undefined;
+  }
+
+  async getBuilderByEmail(email: string): Promise<Builder | undefined> {
+    const [builder] = await db.select().from(builders).where(eq(builders.email, email));
+    return builder || undefined;
+  }
+
+  async getAllBuilders(): Promise<Builder[]> {
+    return await db.select().from(builders);
   }
 }
 

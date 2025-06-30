@@ -246,12 +246,21 @@ export default function JoinNetwork() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button 
-              onClick={handleJoinNetwork}
+              onClick={() => setLocation('/builder-signup')}
               size="lg" 
               className="bg-white hover:bg-gray-100 text-yellow-600 px-8 py-4 text-lg font-semibold rounded-2xl"
             >
-              Join the Network
+              Create Your Profile
               <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              onClick={handleJoinNetwork}
+              variant="outline"
+              size="lg" 
+              className="border-white text-white hover:bg-white hover:text-yellow-600 px-8 py-4 text-lg font-semibold rounded-2xl"
+            >
+              Contact Us
+              <Mail className="ml-2 h-4 w-4" />
             </Button>
           </div>
 
