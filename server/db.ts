@@ -1,13 +1,15 @@
-import { createClient } from '@supabase/supabase-js';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-serverless';
+import ws from "ws";
 import * as schema from "@shared/schema";
 
-// Supabase configuration
-const supabaseUrl = 'https://wsobqmcjmukjgylzzhkl.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indzb2JxbWNqbXVramd5bHp6aGtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA0MDk0MzUsImV4cCI6MjA2NTk4NTQzNX0.zDALCDgyOBjKNgdW-hGfHxrmDLpBjwso0-LtSOplTaU';
+neonConfig.webSocketConstructor = ws;
 
-// Create Supabase client for API calls
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (!process.env.DATABASE_URL) {
+  throw new Error(
+    "DATABASE_URL must be set. Did you forget to provision a database?",
+  );
+}
 
-// We'll use Supabase client directly instead of Drizzle for simpler setup
-// This allows us to work with the database immediately without complex connection setup
-export { supabase as db };
+export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+export const db = drizzle({ client: pool, schema });

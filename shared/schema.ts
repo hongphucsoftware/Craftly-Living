@@ -30,6 +30,9 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertRenovationProjectSchema = createInsertSchema(renovationProjects).omit({
   id: true,
   createdAt: true,
+}).extend({
+  budgetMin: z.string().optional().nullable(),
+  budgetMax: z.string().optional().nullable(),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
