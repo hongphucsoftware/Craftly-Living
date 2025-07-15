@@ -92,10 +92,10 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
   };
 
   const handleFormSubmit = (data: FormData) => {
-    const projectData: any = {
+    const projectData: InsertRenovationProject = {
       renovationType: data.renovationType,
       postcode: data.postcode,
-      budget: data.budget, // Send the budget range string to the API
+      budget: data.budget, // Send the budget range string to the API for parsing
       style: data.style,
       timeline: data.timeline,
       additionalNotes: data.additionalNotes || "",

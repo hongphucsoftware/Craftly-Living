@@ -59,6 +59,7 @@ export const insertRenovationProjectSchema = createInsertSchema(renovationProjec
 }).extend({
   budgetMin: z.string().optional().nullable(),
   budgetMax: z.string().optional().nullable(),
+  budget: z.string().optional(), // Allow budget field from form
 });
 
 export const insertBuilderSchema = createInsertSchema(builders).omit({
