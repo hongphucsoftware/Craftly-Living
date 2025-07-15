@@ -154,6 +154,8 @@ Changelog:
 - July 15, 2025. Fixed onboarding form submission by updating schema to handle budget field properly
 - July 15, 2025. Migrated database from Neon to Supabase PostgreSQL with full data preservation
 - July 15, 2025. Verified all API endpoints and database operations working correctly with Supabase
+- July 15, 2025. Completely removed Neon database dependencies and switched to standard PostgreSQL
+- July 15, 2025. Updated all API endpoints to use pg driver with proper SSL configuration for Supabase
 ```
 
 ## User Preferences

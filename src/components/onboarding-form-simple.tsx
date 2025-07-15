@@ -92,9 +92,6 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
   };
 
   const handleFormSubmit = (data: FormData) => {
-    console.log("Form submission data:", data);
-    console.log("Form errors:", form.formState.errors);
-    
     const projectData: InsertRenovationProject = {
       renovationType: data.renovationType,
       postcode: data.postcode,
@@ -103,8 +100,6 @@ export default function OnboardingForm({ onSubmit, isSubmitting = false }: Onboa
       timeline: data.timeline,
       additionalNotes: data.additionalNotes || "",
     };
-    
-    console.log("Transformed project data:", projectData);
     onSubmit(projectData);
   };
 
